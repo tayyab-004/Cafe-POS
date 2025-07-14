@@ -1,5 +1,6 @@
 import Greetings from "../components/home/Greetings";
 import MiniCard from "../components/home/MiniCard";
+import PopularDishes from "../components/home/PopularDishes";
 import RecentOrders from "../components/home/RecentOrders";
 import BottomNav from "../components/shared/BottomNav";
 import { BsCashCoin } from "react-icons/bs";
@@ -28,7 +29,9 @@ const Home = () => {
         <RecentOrders />
       </div>
       {/* Right Div */}
-      <div className="flex-[2] bg-[#1a1a1a]"></div>
+      <div className="flex-[2]">
+        <PopularDishes />
+      </div>
       <BottomNav />
     </section>
   );
