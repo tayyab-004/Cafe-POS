@@ -393,7 +393,7 @@ export const menus = [
   { id: 6, name: "Pizzas", bgColor: "#285430", icon: "🍕", items: pizzas },
   {
     id: 7,
-    name: "Alcoholic Drinks",
+    name: "Soft Drinks",
     bgColor: "#b73e3e",
     icon: "🍺",
     items: alcoholicDrinks,
