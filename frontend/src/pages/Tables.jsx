@@ -48,6 +48,7 @@ const Tables = () => {
               name={table.name}
               status={table.status}
               initials={table.initial}
+              seats={table.seats}
             />
           );
         })}

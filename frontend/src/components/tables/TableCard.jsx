@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { getRandomBG } from "../../utils";
+import { getBgColor } from "../../utils";
 
-const TableCard = ({ key, name, status, initials }) => {
+const TableCard = ({ key, name, status, initials, seats }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     if (status === "Booked") return;
@@ -27,10 +27,14 @@ const TableCard = ({ key, name, status, initials }) => {
         </p>
       </div>
       <div className="flex items-center justify-center mt-5 mb-9">
-        <h1 className={`${getRandomBG()} text-white rounded-full p-5 text-xl`}>
+        <h1
+          className={`text-white rounded-full p-5 text-xl`}
+          style={{ backgroundColor: getBgColor() }}
+        >
           {initials}
         </h1>
       </div>
+      <p className="text-[#ababab] text-xs">Seats: <span className="text-[#f5f5f5]">{seats}</span></p>
     </div>
   );
 };
