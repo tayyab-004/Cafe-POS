@@ -1,16 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import { getBgColor } from "../../utils";
+import { useDispatch } from "react-redux";
+import { updateTable } from "../../redux/slices/customerSlice";
 
 const TableCard = ({ key, name, status, initials, seats }) => {
   const navigate = useNavigate();
-  const handleClick = () => {
+  const dispatch = useDispatch();
+
+  const handleClick = (name) => {
     if (status === "Booked") return;
+    dispatch(updateTable({ tableNo: name }));
     navigate("/menu");
   };
 
   return (
     <div
-      onClick={handleClick}
+      onClick={() => handleClick(name)}
       key={key}
       className="w-[300px] bg-[#262626] hover:bg-[#2c2c2c] p-4 rounded-lg cursor-pointer"
     >
@@ -34,7 +39,9 @@ const TableCard = ({ key, name, status, initials, seats }) => {
           {initials}
         </h1>
       </div>
-      <p className="text-[#ababab] text-xs">Seats: <span className="text-[#f5f5f5]">{seats}</span></p>
+      <p className="text-[#ababab] text-xs">
+        Seats: <span className="text-[#f5f5f5]">{seats}</span>
+      </p>
     </div>
   );
 };

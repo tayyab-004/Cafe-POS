@@ -6,11 +6,14 @@ import CustomerInfo from "../components/menu/CustomerInfo";
 import Bill from "../components/menu/Bill";
 import CartInfo from "../components/menu/CartInfo";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Menu = () => {
   useEffect(() => {
     document.title = "Restro - Menu";
   }, []);
+
+  const customerData = useSelector((state) => state.customer);
 
   return (
     <section className="bg-[#1f1f1f] h-[calc(100vh-5rem)] overflow-hidden flex gap-3">
@@ -28,10 +31,10 @@ const Menu = () => {
               <MdRestaurantMenu className="text-[#f5f5f5] text-4xl" />
               <div className="flex flex-col items-start">
                 <h1 className="text-md text-[#f5f5f5] font-semibold">
-                  Customer Name
+                  {customerData.customerName || "Customer Name"}
                 </h1>
                 <p className="text-xs text-[#ababab] font-medium">
-                  Table No: 2
+                  {customerData.tableNo || "N/A"}
                 </p>
               </div>
             </div>
