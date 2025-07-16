@@ -295,42 +295,42 @@ export const pizzas = [
   },
 ];
 
-export const alcoholicDrinks = [
+export const softDrinks = [
   {
     id: 1,
-    name: "Beer",
+    name: "Fanta",
     price: 200,
-    category: "Alcoholic",
+    category: "Drinks",
   },
   {
     id: 2,
-    name: "Whiskey",
-    price: 500,
-    category: "Alcoholic",
+    name: "Coca-Cola",
+    price: 250,
+    category: "Drinks",
   },
   {
     id: 3,
-    name: "Vodka",
-    price: 450,
-    category: "Alcoholic",
+    name: "Pepsi",
+    price: 250,
+    category: "Drinks",
   },
   {
     id: 4,
-    name: "Rum",
-    price: 350,
-    category: "Alcoholic",
+    name: "Sprite",
+    price: 250,
+    category: "Drinks",
   },
   {
     id: 5,
-    name: "Tequila",
-    price: 600,
-    category: "Alcoholic",
+    name: "Dwe",
+    price: 250,
+    category: "Drinks",
   },
   {
     id: 6,
-    name: "Cocktail",
-    price: 400,
-    category: "Alcoholic",
+    name: "Marinda",
+    price: 200,
+    category: "Drinks",
   },
 ];
 
@@ -396,7 +396,7 @@ export const menus = [
     name: "Soft Drinks",
     bgColor: "#b73e3e",
     icon: "🍺",
-    items: alcoholicDrinks,
+    items: softDrinks,
   },
   { id: 8, name: "Salads", bgColor: "#5b45b0", icon: "🥗", items: salads },
 ];
