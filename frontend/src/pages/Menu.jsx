@@ -5,8 +5,13 @@ import MenuContainer from "../components/menu/MenuContainer";
 import CustomerInfo from "../components/menu/CustomerInfo";
 import Bill from "../components/menu/Bill";
 import CartInfo from "../components/menu/CartInfo";
+import { useEffect } from "react";
 
 const Menu = () => {
+  useEffect(() => {
+    document.title = "Restro - Menu";
+  }, []);
+
   return (
     <section className="bg-[#1f1f1f] h-[calc(100vh-5rem)] overflow-hidden flex gap-3">
       {/* Left Div */}

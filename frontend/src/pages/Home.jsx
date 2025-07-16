@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Greetings from "../components/home/Greetings";
 import MiniCard from "../components/home/MiniCard";
 import PopularDishes from "../components/home/PopularDishes";
@@ -7,6 +8,10 @@ import { BsCashCoin } from "react-icons/bs";
 import { GrInProgress } from "react-icons/gr";
 
 const Home = () => {
+  useEffect(() => {
+    document.title = "Restro - Home";
+  }, []);
+
   return (
     <section className="bg-[#1f1f1f] h-[calc(100vh-5rem)] overflow-hidden flex gap-3">
       {/* Left Div */}

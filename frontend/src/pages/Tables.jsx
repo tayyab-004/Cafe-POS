@@ -1,11 +1,14 @@
 import BottomNav from "../components/shared/BottomNav";
 import BackButton from "../components/shared/BackButton";
 import TableCard from "../components/tables/TableCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { tables } from "../constants";
 
 const Tables = () => {
   const [status, setStatus] = useState("all");
+  useEffect(() => {
+    document.title = "Restro - Tables";
+  }, []);
 
   return (
     <section className="bg-[#1f1f1f] h-[calc(100vh-5rem)] overflow-hidden">
