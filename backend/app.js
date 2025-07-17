@@ -2,7 +2,7 @@ const express = require("express");
 const connectDB = require("./config/database");
 const config = require("./config/config");
 const globalErrorHandler = require("./middlewares/globalErrorHandler");
-const createHttpError = require("http-errors");
+const cookieParser = require("cookie-parser");
 const app = express();
 
 const PORT = config.port;
@@ -10,6 +10,7 @@ connectDB();
 
 // Middlewares
 app.use(express.json());
+app.use(cookieParser());
 
 // Root Endpoint
 app.get("/", (req, res) => {
