@@ -3,10 +3,32 @@ import { FaUserCircle } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import logo from "../../assets/images/logo.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../https";
+import { removeUser } from "../../redux/slices/userSlice";
 
 const Headers = () => {
   const userData = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logoutMutation = useMutation({
+    mutationFn: () => logout(),
+    onSuccess: (data) => {
+      console.log(data);
+      dispatch(removeUser());
+      navigate("/auth");
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const handleLogout = () => {
+    logoutMutation.mutate();
+  };
 
   return (
     <header className="flex justify-between items-center py-4 px-8 bg-[#1a1a1a]">
@@ -38,7 +60,11 @@ const Headers = () => {
               {userData.role || "Role"}
             </p>
           </div>
-          <IoLogOut className="text-[#f5f5f5] ml-2" size={40} />
+          <IoLogOut
+            onClick={handleLogout}
+            className="text-[#f5f5f5] ml-2"
+            size={40}
+          />
         </div>
       </div>
     </header>
