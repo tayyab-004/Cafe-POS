@@ -1,9 +1,13 @@
 import { FaSearch } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
+import { IoLogOut } from "react-icons/io5";
 import logo from "../../assets/images/logo.png";
+import { useSelector } from "react-redux";
 
 const Headers = () => {
+  const userData = useSelector((state) => state.user);
+
   return (
     <header className="flex justify-between items-center py-4 px-8 bg-[#1a1a1a]">
       <div className="flex items-center gap-2">
@@ -27,9 +31,14 @@ const Headers = () => {
         <div className="flex items-center gap-3 cursor-pointer">
           <FaUserCircle className="text-[#f5f5f5] text-4xl" />
           <div className="flex flex-col items-start">
-            <h1 className="text-md text-[#f5f5f5] font-semibold">Tayyab</h1>
-            <p className="text-xs text-[#ababab] font-medium">Admin</p>
+            <h1 className="text-md text-[#f5f5f5] font-semibold">
+              {userData.name || "Name"}
+            </h1>
+            <p className="text-xs text-[#ababab] font-medium">
+              {userData.role || "Role"}
+            </p>
           </div>
+          <IoLogOut className="text-[#f5f5f5] ml-2" size={40} />
         </div>
       </div>
     </header>
