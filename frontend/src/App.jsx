@@ -8,9 +8,11 @@ import {
 import { Home, Auth, Orders, Tables, Menu } from "./pages";
 import Headers from "./components/shared/Headers";
 import { useSelector } from "react-redux";
+import useLoadData from "./hooks/useLoadData";
 
 function Layout() {
   const location = useLocation();
+  useLoadData();
   const hideHeaderRoutes = ["/auth"];
   const { isAuth } = useSelector((state) => state.user);
 
