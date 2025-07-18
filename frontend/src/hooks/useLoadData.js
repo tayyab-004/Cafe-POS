@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserData } from "../https";
@@ -7,6 +7,7 @@ import { setUser, removeUser } from "../redux/slices/userSlice";
 const useLoadData = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -18,11 +19,15 @@ const useLoadData = () => {
         dispatch(removeUser());
         navigate("/auth");
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchUser();
   }, [dispatch, navigate]);
+
+  return isLoading;
 };
 
 export default useLoadData;

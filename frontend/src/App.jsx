@@ -9,12 +9,15 @@ import { Home, Auth, Orders, Tables, Menu } from "./pages";
 import Headers from "./components/shared/Headers";
 import { useSelector } from "react-redux";
 import useLoadData from "./hooks/useLoadData";
+import FullScreenLoader from "./components/shared/FullScreenLoader";
 
 function Layout() {
+  const isLoading = useLoadData();
   const location = useLocation();
-  useLoadData();
   const hideHeaderRoutes = ["/auth"];
   const { isAuth } = useSelector((state) => state.user);
+
+  if (isLoading) return <FullScreenLoader />;
 
   return (
     <>
