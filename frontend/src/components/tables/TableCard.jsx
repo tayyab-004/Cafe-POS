@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { getBgColor } from "../../utils";
+import { getAvatarName, getBgColor } from "../../utils";
 import { useDispatch } from "react-redux";
 import { updateTable } from "../../redux/slices/customerSlice";
 
@@ -20,7 +20,7 @@ const TableCard = ({ key, name, status, initials, seats }) => {
       className="w-[300px] bg-[#262626] hover:bg-[#2c2c2c] p-4 rounded-lg cursor-pointer"
     >
       <div className="flex items-center justify-between px-1">
-        <h1 className="text-[#f5f5f5] text-xl font-semibold">{name}</h1>
+        <h1 className="text-[#f5f5f5] text-xl font-semibold">Table {name}</h1>
         <p
           className={`${
             status === "Booked"
@@ -34,9 +34,9 @@ const TableCard = ({ key, name, status, initials, seats }) => {
       <div className="flex items-center justify-center mt-5 mb-9">
         <h1
           className={`text-white rounded-full p-5 text-xl`}
-          style={{ backgroundColor: getBgColor() }}
+          style={{ backgroundColor: initials ? getBgColor() : "#1f1f1f" }}
         >
-          {initials}
+          {getAvatarName(initials) || "N/A"}
         </h1>
       </div>
       <p className="text-[#ababab] text-xs">
