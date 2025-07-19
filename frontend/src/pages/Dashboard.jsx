@@ -31,6 +31,7 @@ const Dashboard = () => {
           {buttons.map(({ label, icon, action }) => {
             return (
               <button
+                key={action}
                 onClick={() => handleOpenModal(action)}
                 className="bg-[#1a1a1a] hover:bg-[#262626] px-8 py-3 rounded-lg text-[#f5f5f5] font-semibold flex items-center gap-2"
               >
@@ -44,6 +45,7 @@ const Dashboard = () => {
           {tabs.map((tab) => {
             return (
               <button
+                key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`
                     px-8 py-3 rounded-lg text-[#f5f5f5] font-semibold flex items-center gap-2 ${

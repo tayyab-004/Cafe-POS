@@ -41,7 +41,7 @@ const BottomNav = () => {
     <div className="fixed bottom-0 left-0 right-0 bg-[#262626] p-2 h-16 flex justify-around">
       <button
         onClick={() => navigate("/")}
-        className={`flex items-center justify-center font-bold ${
+        className={`flex items-center justify-center font-bold cursor-pointer ${
           isActive("/") ? "text-[#f5f5f5] bg-[#343434]" : "text-[#ababab]"
         } w-[300px] rounded-[20px]`}
       >
@@ -49,7 +49,7 @@ const BottomNav = () => {
       </button>
       <button
         onClick={() => navigate("/orders")}
-        className={`flex items-center justify-center font-bold ${
+        className={`flex items-center justify-center font-bold cursor-pointer ${
           isActive("/orders") ? "text-[#f5f5f5] bg-[#343434]" : "text-[#ababab]"
         } w-[300px] rounded-[20px]`}
       >
@@ -57,20 +57,20 @@ const BottomNav = () => {
       </button>
       <button
         onClick={() => navigate("/tables")}
-        className={`flex items-center justify-center font-bold ${
+        className={`flex items-center justify-center font-bold cursor-pointer ${
           isActive("/tables") ? "text-[#f5f5f5] bg-[#343434]" : "text-[#ababab]"
         } w-[300px] rounded-[20px]`}
       >
         <MdTableBar className="inline mr-2" size={20} /> <p>Tables</p>
       </button>
-      <button className="flex items-center justify-center text-[#ababab] w-[200px]">
+      <button className="flex items-center justify-center text-[#ababab] w-[200px] cursor-pointer">
         <CiCircleMore className="inline mr-2" size={20} /> <p>More</p>
       </button>
 
       <button
         disabled={isActive("/tables") || isActive("/menu")}
         onClick={openModal}
-        className="absolute bottom-6 bg-[#f6b100] text-[#f5f5f5] rounded-full p-3 items-center"
+        className="absolute bottom-6 bg-[#f6b100] text-[#f5f5f5] rounded-full p-3 items-center cursor-pointer"
       >
         <BiSolidDish size={30} />
       </button>
