@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { getTotalPrice } from "../../redux/slices/cartSlice";
 import { useState } from "react";
 import { enqueueSnackbar } from "notistack";
-import { createOrderRazorpay } from "../../https";
+import { createOrderRazorpay, VerifyPaymentRazorpay } from "../../https";
 
 function loadScript(src) {
   return new Promise((resolve) => {
@@ -65,7 +65,9 @@ const Bill = () => {
         description: "Secure Payment for Your Meal",
         order_id: data.order.id,
         handler: async function (response) {
-          console.log(response);
+          const verification = await VerifyPaymentRazorpay(response);
+          console.log(verification);
+          enqueueSnackbar(verification.data.message, { variant: "success" });
         },
         prefill: {
           name: customerData.name,
