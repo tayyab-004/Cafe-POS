@@ -24,7 +24,7 @@ export const updateTable = ({ tableId, ...tableData }) =>
 // Payment Endpoints
 export const createOrderRazorpay = (data) =>
   api.post("/api/payment/create-order", data);
-export const VerifyPaymentRazorpay = (data) =>
+export const verifyPaymentRazorpay = (data) =>
   api.post("/api/payment/verify-payment", data);
 
 // Order Endpoints
