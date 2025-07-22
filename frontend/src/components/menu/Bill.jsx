@@ -1,8 +1,15 @@
-import { useSelector } from "react-redux";
-import { getTotalPrice } from "../../redux/slices/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getTotalPrice, removeAllItems } from "../../redux/slices/cartSlice";
 import { useState } from "react";
 import { enqueueSnackbar } from "notistack";
-import { createOrderRazorpay, VerifyPaymentRazorpay } from "../../https";
+import {
+  addOrder,
+  createOrderRazorpay,
+  updateTable,
+  VerifyPaymentRazorpay,
+} from "../../https";
+import { useMutation } from "@tanstack/react-query";
+import { removeCustomer } from "../../redux/slices/customerSlice";
 
 function loadScript(src) {
   return new Promise((resolve) => {
@@ -23,6 +30,7 @@ const Bill = () => {
   const total = useSelector(getTotalPrice);
   const customerData = useSelector((state) => state.customer);
   const [paymentMethod, setPaymentMethod] = useState();
+  const dispatch = useDispatch();
 
   const taxRate = 5.25;
   const tax = (total * taxRate) / 100;
@@ -68,6 +76,27 @@ const Bill = () => {
           const verification = await VerifyPaymentRazorpay(response);
           console.log(verification);
           enqueueSnackbar(verification.data.message, { variant: "success" });
+
+          // Place the order
+          const orderData = {
+            customerDetails: {
+              name: customerData.customerName,
+              phone: customerData.customerPhone,
+              guests: customerData.guests,
+            },
+            orderStatus: "In Progress",
+            bills: {
+              total: total,
+              tax: tax,
+              totalWithTax: totalPriceWithTax,
+            },
+            items: cartData,
+            table: customerData.table.tableId,
+          };
+
+          setTimeout(() => {
+            orderMutation.mutate(orderData);
+          }, 1500);
         },
         prefill: {
           name: customerData.name,
@@ -86,6 +115,44 @@ const Bill = () => {
       });
     }
   };
+
+  const orderMutation = useMutation({
+    mutationFn: (reqData) => addOrder(reqData),
+    onSuccess: (resData) => {
+      const { data } = resData.data;
+      console.log(data);
+
+      // Update Table
+      const tableData = {
+        status: "Booked",
+        orderId: data._id,
+        tableId: data.table,
+      };
+
+      setTimeout(() => {
+        tableUpdateMutation.mutate(tableData);
+      }, 1500);
+
+      enqueueSnackbar("Order Placed!", {
+        variant: "success",
+      });
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const tableUpdateMutation = useMutation({
+    mutationFn: (reqData) => updateTable(reqData),
+    onSuccess: (resData) => {
+      console.log(resData);
+      dispatch(removeCustomer());
+      dispatch(removeAllItems());
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   return (
     <>

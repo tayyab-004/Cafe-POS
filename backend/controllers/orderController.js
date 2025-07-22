@@ -37,7 +37,7 @@ const getOrderById = async (req, res, next) => {
 
 const getOrders = async (req, res, next) => {
   try {
-    const orders = await Order.find();
+    const orders = await Order.find().populate("table");
     res.status(200).json({ data: orders });
   } catch (error) {
     next(error);

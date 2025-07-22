@@ -7,6 +7,7 @@ const config = Object.freeze({
   accessTokenSecret: process.env.JWT_SECRET,
   razorpayKeyId: process.env.RAZORPAY_KEY_ID,
   razorpaySecretKey: process.env.RAZORPAY_KEY_SECRET,
+  razorpayWebhookSecret: process.env.RAZORPAY_WEBHOOK_SECRET,
 });
 
 module.exports = config;

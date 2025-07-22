@@ -9,7 +9,9 @@ const TableCard = ({ id, name, status, initials, seats }) => {
 
   const handleClick = (name) => {
     if (status === "Booked") return;
-    dispatch(updateTable({ tableNo: name }));
+
+    const table = { tableId: id, tableNo: name };
+    dispatch(updateTable({ table }));
     navigate("/menu");
   };
 
