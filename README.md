@@ -67,7 +67,7 @@ npm install
 
 ### 3. Install Dependencies
 
-#### Frontend (Patient Website):
+#### Frontend:
 
 ```
 cd frontend
